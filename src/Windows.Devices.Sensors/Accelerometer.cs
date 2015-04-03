@@ -68,7 +68,7 @@ namespace Windows.Devices.Sensors
 		}
 	}
 
-	public sealed class AccelerometerReadingChangedEventArgs
+	public sealed class AccelerometerReadingChangedEventArgs : System.EventArgs
 	{
 		internal AccelerometerReadingChangedEventArgs(AccelerometerReading reading)
 		{

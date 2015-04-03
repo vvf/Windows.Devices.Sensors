@@ -17,10 +17,26 @@ namespace TestApp
 		{
 			StartSensors();
 		}
-
+        private GPS m_gps = null;
+        public String isGPS
+        {
+            //get { return m_gps == null ? "No" : "Yes"; }
+            get { return m_gps == null ? "No" : "Yes"; }
+        }
+        public String gps_state
+        {
+            get { return m_gps.State;  }
+        }
 		private void StartSensors()
 		{
-			var compass = Windows.Devices.Sensors.Compass.GetDefault();
+            m_gps = Windows.Devices.Sensors.GPS.GetDefault();
+            if (m_gps != null)
+            {
+                m_gps.ReadingChanged += gps_ReadingChanged;
+                GPSReading = m_gps.GetCurrentReading();
+            }
+            var compass = Windows.Devices.Sensors.Compass.GetDefault();
+
 			if (compass != null)
 			{
 				compass.ReadingChanged += compass_ReadingChanged;
@@ -40,9 +56,33 @@ namespace TestApp
 			}
 		}
 
-		#region Compass
+        #region GPS
+        private GPSReading m_GPSReading;
 
-		private CompassReading m_CompassReading;
+        public GPSReading GPSReading
+        {
+            get { return m_GPSReading; }
+            set { m_GPSReading = value; OnPropertyChanged(); }
+        }
+
+        private void gps_StateChanged(object sender, object state)
+        {
+            OnPropertyChanged();
+
+        }
+        private void gps_ReadingChanged(object sender, Windows.Devices.Sensors.GPSReadingChangedEventArgs e)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke((Action)delegate
+            {
+                GPSReading = e.Reading;
+            });
+        }
+
+        #endregion
+
+        #region Compass
+
+        private CompassReading m_CompassReading;
 
 		public CompassReading CompassReading
 		{
@@ -101,7 +141,7 @@ namespace TestApp
 		#endregion Orientation
 
 
-		private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+		private void OnPropertyChanged(string propertyName = null)
 		{
 			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));

@@ -61,7 +61,7 @@ namespace Windows.Devices.Sensors
 		}
 	}
 
-	public sealed class OrientationSensorReadingChangedEventArgs
+	public sealed class OrientationSensorReadingChangedEventArgs : EventArgs
 	{
 		internal OrientationSensorReadingChangedEventArgs(OrientationSensorReading reading)
 		{

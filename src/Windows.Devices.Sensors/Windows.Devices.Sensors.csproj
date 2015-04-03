@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Windows.Devices.Sensors</RootNamespace>
     <AssemblyName>Windows.Devices.Sensors</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accelerometer3DInternal.cs" />
+    <Compile Include="GPS.cs" />
     <Compile Include="Compass.cs" />
     <Compile Include="CompassInternal.cs" />
     <Compile Include="Accelerometer.cs" />
+    <Compile Include="GPSInternal.cs" />
     <Compile Include="OrientationSensor.cs" />
     <Compile Include="OrientationSensorInternal.cs" />
     <Compile Include="Interop\CoreErrorHelper.cs" />

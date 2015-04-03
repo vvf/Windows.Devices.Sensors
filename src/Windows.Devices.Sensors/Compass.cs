@@ -64,7 +64,7 @@ namespace Windows.Devices.Sensors
 		}
 	}
 
-	public sealed class CompassReadingChangedEventArgs
+    public sealed class CompassReadingChangedEventArgs : EventArgs
 	{
 		internal CompassReadingChangedEventArgs(CompassReading reading)
 		{
