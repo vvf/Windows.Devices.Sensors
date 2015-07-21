@@ -16,6 +16,13 @@ namespace Windows.Devices.Sensors
 
         public GPSInternal() : base() { }
 
+        public Location forceReloadLocation(){
+            if (base.TryUpdateData())
+            {
+                return this.CurrentLocation;
+            }
+            return null;
+        }       
         public Location CurrentLocation
         {
             get

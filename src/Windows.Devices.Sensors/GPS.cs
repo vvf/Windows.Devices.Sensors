@@ -74,11 +74,16 @@ namespace Windows.Devices.Sensors
         {
             get { return m_gps.State.ToString(); }
         }
-	}
+
+        public bool tryToReloadLocation()
+        {
+            return null != m_gps.forceReloadLocation();
+        }
+    }
 
     public sealed class GPSReadingChangedEventArgs : EventArgs
 	{
-		internal GPSReadingChangedEventArgs(GPSReading reading)
+		public GPSReadingChangedEventArgs(GPSReading reading)
 		{
 			Reading = reading;
 		}
