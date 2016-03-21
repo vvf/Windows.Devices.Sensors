@@ -19,12 +19,15 @@ namespace Windows.Devices.Sensors
                 {
                     return new GPS(sensorList[0]);
                 }
+                DefaultNullReason = "list empty";
             }
             catch
             {
+                DefaultNullReason = "exception";
             }
             return null;
         }
+        public static String DefaultNullReason {get; set; }
 
         private Sensors.GPSInternal m_gps;
 
